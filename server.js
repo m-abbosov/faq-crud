@@ -74,7 +74,7 @@ app.get('/api/faqs', (req, res) => {
 app.get('/api/faqs/:id', (req, res) => {
   try {
     const faqs = readFAQs();
-    const faq = faqs.find((f) => f.id === req.params.id);
+    const faq = faqs.find((f) => f.id == req.params.id);
 
     if (!faq) {
       return res.status(404).json({
@@ -156,7 +156,7 @@ app.put('/api/faqs/:id', (req, res) => {
   try {
     const { question, answer } = req.body;
     const faqs = readFAQs();
-    const faqIndex = faqs.findIndex((f) => f.id === req.params.id);
+    const faqIndex = faqs.findIndex((f) => f.id == req.params.id);
 
     if (faqIndex === -1) {
       return res.status(404).json({
@@ -212,7 +212,7 @@ app.put('/api/faqs/:id', (req, res) => {
 app.delete('/api/faqs/:id', (req, res) => {
   try {
     const faqs = readFAQs();
-    const faqIndex = faqs.findIndex((f) => f.id === req.params.id);
+    const faqIndex = faqs.findIndex((f) => f.id == req.params.id);
 
     if (faqIndex === -1) {
       return res.status(404).json({

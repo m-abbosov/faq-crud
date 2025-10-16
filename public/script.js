@@ -112,7 +112,7 @@ async function updateFAQ(id, faqData) {
     const result = await response.json();
 
     if (result.success) {
-      const index = faqs.findIndex((faq) => faq.id === id);
+      const index = faqs.findIndex((faq) => faq.id == id);
       if (index !== -1) {
         faqs[index] = result.data;
         displayFAQs(faqs);
@@ -131,6 +131,7 @@ async function updateFAQ(id, faqData) {
 }
 
 async function deleteFAQ(id) {
+  console.log(id);
   try {
     const response = await fetch(`/api/faqs/${id}`, {
       method: 'DELETE',
@@ -139,7 +140,7 @@ async function deleteFAQ(id) {
     const result = await response.json();
 
     if (result.success) {
-      faqs = faqs.filter((faq) => faq.id !== id);
+      faqs = faqs.filter((faq) => faq.id != id);
       displayFAQs(faqs);
       showMessage(result.message, 'success');
       return true;
@@ -282,14 +283,14 @@ function handleFormSubmit(e) {
 }
 
 function editFAQ(id) {
-  const faq = faqs.find((f) => f.id === id);
+  const faq = faqs.find((f) => f.id == id);
   if (faq) {
     openModal(faq);
   }
 }
 
 function confirmDelete(id) {
-  const faq = faqs.find((f) => f.id === id);
+  const faq = faqs.find((f) => f.id == id);
   if (faq) {
     openConfirmModal(
       `"${faq.question}" savolini o'chirishni xohlaysizmi?`,
